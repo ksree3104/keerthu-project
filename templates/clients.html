@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Clients - Srinivasa Enterprises{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background: url('/static/media/assets/showcase/clients.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container">
+        <div class="hero-content text-center">
+            <h1 class="hero-title">Our Valued Clients</h1>
+            <p class="hero-subtitle">Trusted partners across railway, automotive, and engineering industries</p>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Table -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Client Portfolio</h2>
+            <p class="lead text-muted">Organizations that trust us with their fabrication needs</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Our Clients</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Industry</th>
+                                <th>Contact</th>
+                                <th>Since</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for client in clients %}
+                            <tr>
+                                <td>{{ client.name }}</td>
+                                <td>{{ client.company|default:"-" }}</td>
+                                <td>
+                                    <span class="badge bg-primary">{{ client.get_industry_display }}</span>
+                                </td>
+                                <td>
+                                    <a href="mailto:{{ client.email }}" class="text-decoration-none">
+                                        <i class="fas fa-envelope me-1"></i>{{ client.email }}
+                                    </a><br>
+                                    <small class="text-muted">
+                                        <i class="fas fa-phone me-1"></i>{{ client.phone }}
+                                    </small>
+                                </td>
+                                <td>{{ client.created_at|date:"M Y" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    No clients added yet. Clients will appear here once they register or are added to the system.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">What Our Clients Say</h2>
+            <p class="lead text-muted">Testimonials from satisfied customers</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Srinivasa Enterprises delivered our train door assemblies with exceptional precision.
+                        Their quality control and timely delivery helped us meet our project deadlines."
+                    </p>
+                    <p class="testimonial-author">
+                        <strong>Rajesh Kumar</strong><br>
+                        <small class="text-muted">Indian Railways</small>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Outstanding fabrication work on our metro rail components. The team's expertise
+                        in aluminium and stainless steel is commendable."
+                    </p>
+                    <p class="testimonial-author">
+                        <strong>Priya Sharma</strong><br>
+                        <small class="text-muted">Metro Rail Corporation</small>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Reliable partner for our engineering projects. Consistent quality and professional
+                        service make them our go-to fabrication experts."
+                    </p>
+                    <p class="testimonial-author">
+                        <strong>Amit Patel</strong><br>
+                        <small class="text-muted">Automotive Solutions Ltd</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Industries Served -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Industries We Serve</h2>
+            <p class="lead text-muted">Comprehensive solutions across multiple sectors</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-train fa-3x text-primary mb-3"></i>
+                        <h5>Railway</h5>
+                        <p>Train components, door assemblies, and rail infrastructure parts</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-car fa-3x text-primary mb-3"></i>
+                        <h5>Automotive</h5>
+                        <p>Vehicle components and automotive fabrication solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+                        <h5>Engineering</h5>
+                        <p>General engineering and industrial fabrication</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-industry fa-3x text-primary mb-3"></i>
+                        <h5>Manufacturing</h5>
+                        <p>Custom manufacturing and assembly solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

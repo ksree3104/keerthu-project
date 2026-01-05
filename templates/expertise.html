@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Expertise - Srinivasa Enterprises{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background: url('/static/media/assets/showcase/expertise.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container">
+        <div class="hero-content text-center">
+            <h1 class="hero-title">Our Expertise</h1>
+            <p class="hero-subtitle">Advanced fabrication processes and quality manufacturing</p>
+        </div>
+    </div>
+</section>
+
+<!-- Fabrication Processes -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Fabrication Processes</h2>
+            <p class="lead text-muted">Our comprehensive manufacturing capabilities</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Process Details</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Description</th>
+                                <th>Time (minutes)</th>
+                                <th>Cost per Unit (₹)</th>
+                                <th>Quality Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for process in processes %}
+                            <tr>
+                                <td>
+                                    <strong>{{ process.name }}</strong>
+                                </td>
+                                <td>{{ process.description }}</td>
+                                <td>{{ process.time_minutes }} min</td>
+                                <td>₹{{ process.cost_per_unit }}</td>
+                                <td>
+                                    <span class="badge bg-success">{{ process.quality_score }}/5</span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    No processes defined yet. Fabrication processes will be listed here.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Services -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Our Services</h2>
+            <p class="lead text-muted">We combine our extensive engineering experience and market knowledge with an expanding supply chain footprint, allowing us to fabricate products</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Aluminum Fabrications</h5>
+                        <p class="card-text">We provide an excellent solution to our clients to design and fabrication of aluminium products.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-tools fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">Stainless Steel Fabrications</h5>
+                        <p class="card-text">Experts using the best grade Stainless Steel and advanced techniques.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-train fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Rail Coach Components</h5>
+                        <p class="card-text">Manufacturing parts of railway coaches to developing unique components.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-compress fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Pressed Components</h5>
+                        <p class="card-text">Reliable entity among railway parts, can be cost-effectively.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-cog fa-3x text-danger mb-3"></i>
+                        <h5 class="card-title">Machined Components for Railway</h5>
+                        <p class="card-text">A trustworthy entity among railway equipment.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <i class="fas fa-industry fa-3x text-secondary mb-3"></i>
+                        <h5 class="card-title">Automotive and Engineering Industries</h5>
+                        <p class="card-text">Our decades of expertise in engineering provide the reassurance of unmatched quality you can trust.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Flow -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Our Process Flow</h2>
+            <p class="lead text-muted">From design to delivery - our systematic approach</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h5>Design</h5>
+                    <p class="text-muted">CAD design and engineering</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h5>Cutting</h5>
+                    <p class="text-muted">Precision material cutting</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h5>Forming</h5>
+                    <p class="text-muted">Bending and shaping</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-welding"></i>
+                    </div>
+                    <h5>Welding</h5>
+                    <p class="text-muted">Structural assembly</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h5>Finishing</h5>
+                    <p class="text-muted">Surface treatment</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h5>Quality Check</h5>
+                    <p class="text-muted">Final inspection</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Materials & Capabilities -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Materials We Work With</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h6><i class="fas fa-circle text-primary me-2"></i>Aluminium</h6>
+                                <ul class="list-unstyled small">
+                                    <li>• Lightweight</li>
+                                    <li>• Corrosion resistant</li>
+                                    <li>• Cost effective</li>
+                                    <li>• Easy to machine</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6><i class="fas fa-circle text-primary me-2"></i>Stainless Steel</h6>
+                                <ul class="list-unstyled small">
+                                    <li>• High strength</li>
+                                    <li>• Superior corrosion resistance</li>
+                                    <li>• Durable finish</li>
+                                    <li>• Long service life</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Our Capabilities</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h6><i class="fas fa-cog text-success me-2"></i>Precision</h6>
+                                <p class="small">±0.2mm tolerance accuracy</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6><i class="fas fa-clock text-success me-2"></i>Speed</h6>
+                                <p class="small">7-21 days lead time</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6><i class="fas fa-shield-alt text-success me-2"></i>Quality</h6>
+                                <p class="small">Rigorous testing standards</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6><i class="fas fa-users text-success me-2"></i>Expertise</h6>
+                                <p class="small">15+ years experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications & Standards -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Quality Standards</h2>
+            <p class="lead text-muted">Committed to excellence and compliance</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-certificate fa-3x text-warning mb-3"></i>
+                        <h5>ISO Certified</h5>
+                        <p>Quality management systems</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-railroad fa-3x text-primary mb-3"></i>
+                        <h5>Railway Standards</h5>
+                        <p>RDSO compliance</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-hard-hat fa-3x text-danger mb-3"></i>
+                        <h5>Safety First</h5>
+                        <p>OSHA standards</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <i class="fas fa-microscope fa-3x text-info mb-3"></i>
+                        <h5>Quality Testing</h5>
+                        <p>Advanced inspection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

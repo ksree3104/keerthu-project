@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us | Srinivasa Enterprises</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121720;
+      --text: #e6eef7;
+      --muted: #a8b3c0;
+      --accent: #4cc2ff;
+      --border: #1e2530;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Header with subtle image background */
+    .about-header {
+      position: relative;
+      background: url("/static/media/assets/showcase/about img.jfif") center center / cover no-repeat;
+      height: 300px; /* just enough height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    /* Overlay for dimming */
+    .about-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 15, 20, 0.65); /* dark transparent overlay */
+      backdrop-filter: blur(3px); /* subtle blur effect */
+      z-index: 1;
+    }
+
+    /* Heading text */
+    .about-header h1 {
+      position: relative;
+      z-index: 2;
+      font-size: 3rem;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      margin: 0;
+    }
+
+    /* Cards styling */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    /* Image card with hover zoom */
+    .image-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 30px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .image-card h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .image-card img {
+      width: 100%;
+      max-width: 800px;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: transform 0.4s ease;
+      cursor: pointer;
+    }
+
+    .image-card img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-header {
+        height: 150px;
+      }
+      .about-header h1 {
+        font-size: 2rem;
+      }
+      .image-card img {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with subtle background image and overlay -->
+  <div class="about-header">
+    <h1>About Us</h1>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h3>Vision</h3>
+      <p>
+        To be the <strong>first choice</strong> in sheet metal fabrication and precision stamping,
+        delivering innovative, high-quality products and services that set industry standards.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Mission</h3>
+      <p>
+        To <strong>continuously improve our competitiveness</strong> by providing products and
+        services that exceed customer expectations, foster long-term trust, and drive sustainable growth.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Quality Policy</h3>
+      <p>
+        At <strong>Srinivasa Enterprises</strong>, we are committed to the manufacture and supply of
+        <strong>General Fabrication, Sheet Metal Fabrication, and Pressed Components</strong> that
+        consistently meet and surpass customer requirements.
+      </p>
+      <p>
+        We pledge to achieve excellence in fulfilling all applicable standards and embed
+        <strong>continual improvement</strong> into our Quality Management System to ensure customer
+        satisfaction and operational excellence.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Quality Objectives</h3>
+      <ul>
+        <li>Reduce rejection levels through proactive quality assurance and process optimization.</li>
+        <li>Achieve 100% delivery rating by adhering to committed schedules and enhancing efficiency.</li>
+        <li>Expand our customer base by delivering superior value and building long-term partnerships.</li>
+      </ul>
+    </div>
+
+    <div class="image-card">
+      <h3>Our Team in Action</h3>
+      <img src="/static/media/assets/showcase/our work.jpg" alt="Srinivasa Enterprises fabrication process" />
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="grid grid-2">
+        <div>
+          <strong>SRINIVAS ENTERPRISES</strong><br/>
+          " Manufacture and Supply of Aluminum Fabrications, Stainless steel Fabrications, General Fabrications, Aluminum Door, Windows, Rail Coach Components, Under frame for Rail Bogie, Pressed Components, Machined Components for Railway, Automotive and Engineering Industries."
+        </div>
+        <!-- Include Font Awesome CDN in <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<div class="contact-info">
+  <strong>GET IN TOUCH</strong>
+  <div class="muted">
+    <p><i class="fas fa-phone-alt"></i> +91 - 9884168468</p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:srinivasaenterprises103@gmail.com">srinivasaenterprises103@gmail.com</a></p>
+    <p><i class="fas fa-map-marker-alt"></i> Shed No.406, 17th Phase, Sidco Industrial Estate, Ambattur, Chennai-600 098.</p>
+  </div>
+</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

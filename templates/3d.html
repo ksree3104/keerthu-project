@@ -1,0 +1,1313 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Srinivasa Enterprises{% endblock %}
+
+{% block content %}
+<style>
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        opacity: 0.95;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        color: #64748b;
+        font-weight: 600;
+    }
+
+    .product-card {
+        overflow: hidden;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover {
+        border-color: #2563eb;
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+    }
+
+    .product-image {
+        height: 220px;
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .product-card:hover .product-image {
+        transform: scale(1.05);
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .process-step {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .process-step::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2563eb, #06b6d4);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: left;
+    }
+
+    .process-step:hover::before {
+        transform: scaleX(1);
+    }
+
+    .process-step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+    }
+
+    .process-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 20px;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #2563eb;
+        transition: all 0.3s ease;
+    }
+
+    .process-step:hover .process-icon {
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+        color: white;
+        transform: scale(1.1) rotate(10deg);
+    }
+
+    .cta-section {
+        background: url('/static/media/assets/showcase/cta.jpg');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .cta-section::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -5%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .testimonial-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        transform: translateY(-3px);
+    }
+
+    .testimonial-stars {
+        color: #fbbf24;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+    .testimonial-text {
+        font-size: 0.95rem;
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+
+    .testimonial-author {
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 5px;
+    }
+
+    .testimonial-company {
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+
+    .product-delay-0 {
+        animation-delay: 0s;
+    }
+
+    .product-delay-1 {
+        animation-delay: 0.1s;
+    }
+
+    .product-delay-2 {
+        animation-delay: 0.2s;
+    }
+</style>
+
+<!-- Hero Section with 3D Model -->
+<section class="hero-section animate-fade-in" style="padding: 60px 0;">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- Left Content -->
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="hero-title animate-slide-up">Precision Fabrication Excellence</h1>
+                    <p class="hero-subtitle animate-slide-up">Industry-Leading Aluminium & Stainless Steel Solutions for Railway and Industrial Applications</p>
+                    
+                    <!-- Quick Navigation Buttons -->
+                    <div class="animate-bounce-in mb-4">
+                        <div class="row g-2">
+                            <div class="col-6 col-md-4">
+                                <a href="{% url 'about' %}" class="btn btn-light w-100" style="font-weight: 600; font-size: 0.9rem;">
+                                    <i class="fas fa-info-circle me-2"></i>About Us
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <a href="{% url 'clients' %}" class="btn btn-light w-100" style="font-weight: 600; font-size: 0.9rem;">
+                                    <i class="fas fa-handshake me-2"></i>Clients
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <a href="{% url 'credentials' %}" class="btn btn-light w-100" style="font-weight: 600; font-size: 0.9rem;">
+                                    <i class="fas fa-certificate me-2"></i>Credentials
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <a href="{% url 'contact' %}" class="btn btn-light w-100" style="font-weight: 600; font-size: 0.9rem;">
+                                    <i class="fas fa-envelope me-2"></i>Contact Us
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <a href="{% url 'request_quote' %}" class="btn btn-light w-100" style="font-weight: 600; font-size: 0.9rem;">
+                                    <i class="fas fa-calculator me-2"></i>Get Quote
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <a href="{% url 'expertise' %}" class="btn btn-light w-100" style="font-weight: 600; font-size: 0.9rem;">
+                                    <i class="fas fa-star me-2"></i>Expertise
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Product Image Display -->
+            <div class="col-lg-6">
+                <div style="position: relative; width: 100%; height: 500px; background: linear-gradient(135deg, #f1f5f9, #e2e8f0); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 2px solid rgba(37, 99, 235, 0.2); display: flex; align-items: center; justify-content: center;">
+                    {% if featured_product.image %}
+                        <img src="static/media/assets/showcase/srinivasa.jpg" alt="srinivasa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                    {% else %}
+                        <div style="text-align: center; color: #94a3b8;">
+                            <i class="fas fa-image fa-5x mb-3" style="opacity: 0.5;"></i>
+                            <p style="font-size: 1.1rem; font-weight: 600;">Product Image</p>
+                            <p style="font-size: 0.9rem; opacity: 0.7;">Upload product images from admin panel</p>
+                        </div>
+                    {% endif %}
+                    <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(0,0,0,0.8); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); line-height: 1.6;">
+                        <div><i class="fas fa-image me-2" style="color: #06b6d4;"></i><strong>Product Showcase</strong></div>
+                        <div style="font-size: 0.75rem; margin-top: 4px; opacity: 0.8;">High-quality product images</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 section-bg-pattern">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="stat-card animate-slide-up">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-card animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="stat-number">±0.2mm</div>
+                    <div class="stat-label">Tolerance Accuracy</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-card animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold animate-slide-up">Featured Products</h2>
+            <p class="lead text-muted animate-slide-up">Precision-engineered solutions for railway and industrial applications</p>
+        </div>
+        <div class="row">
+            {% for product in products %}
+            {% cycle 'delay-0' 'delay-1' 'delay-2' as product_delay silent %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card product-card h-100 animate-slide-up {% if forloop.counter0|divisibleby:3 %}product-delay-0{% elif forloop.counter0|add:1|divisibleby:3 %}product-delay-1{% else %}product-delay-2{% endif %}">
+                    {% if product.image %}
+                        <img src="{% static 'media/aliminium fabrication.jpg'%}" class="card-img-top" alt="{{ product.name }}" style="height: 220px; object-fit: cover;">
+                    {% else %}
+                        <div class="product-image">
+                            <i class="fas fa-cube fa-3x text-muted"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                        <p class="card-text text-muted small">{{ product.description|truncatechars:100 }}</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary me-1">{{ product.get_material_display }}</span>
+                            <span class="badge bg-info">{{ product.get_category_display }}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top">
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary w-100">
+                            <i class="fas fa-cube me-2"></i>View 3D Model
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>Products will be displayed here once added to the system.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5 section-bg-pattern">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold animate-slide-up">Complete Manufacturing Services</h2>
+            <p class="lead text-muted animate-slide-up">End-to-end fabrication solutions tailored to your needs</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0s;">
+                    <div class="process-icon"><i class="fas fa-pencil-ruler"></i></div>
+                    <h5>Design & Engineering</h5>
+                    <p class="text-muted small mt-3">Expert CAD design and technical specifications for precise manufacturing</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0.1s;">
+                    <div class="process-icon"><i class="fas fa-tools"></i></div>
+                    <h5>CNC Manufacturing</h5>
+                    <p class="text-muted small mt-3">State-of-the-art CNC machines for precision cutting and shaping</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0.2s;">
+                    <div class="process-icon"><i class="fas fa-fire"></i></div>
+                    <h5>Welding & Assembly</h5>
+                    <p class="text-muted small mt-3">Professional welding and assembly with quality control checks</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0.3s;">
+                    <div class="process-icon"><i class="fas fa-check-circle"></i></div>
+                    <h5>Quality Assurance</h5>
+                    <p class="text-muted small mt-3">Rigorous testing and inspection at every manufacturing stage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold animate-slide-up">Why Choose Srinivasa Enterprises?</h2>
+            <p class="lead text-muted animate-slide-up">Trusted partner for precision fabrication solutions</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="d-flex mb-4 animate-slide-up">
+                    <div class="flex-shrink-0">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h5 class="fw-bold">Precision & Accuracy</h5>
+                        <p class="text-muted mb-0">Tolerance accuracy of ±0.2mm ensures perfect fit and performance</p>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="flex-shrink-0">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h5 class="fw-bold">Quick Turnaround</h5>
+                        <p class="text-muted mb-0">7-21 days lead time with efficient project management</p>
+                    </div>
+                </div>
+
+                <div class="d-flex animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex-shrink-0">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h5 class="fw-bold">Quality Assured</h5>
+                        <p class="text-muted mb-0">Rigorous testing and inspection at every manufacturing stage</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="d-flex mb-4 animate-slide-up" style="animation-delay: 0.15s;">
+                    <div class="flex-shrink-0">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h5 class="fw-bold">Expert Innovation</h5>
+                        <p class="text-muted mb-0">Cutting-edge technology and expert technical knowledge</p>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4 animate-slide-up" style="animation-delay: 0.25s;">
+                    <div class="flex-shrink-0">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h5 class="fw-bold">Reliable Partnership</h5>
+                        <p class="text-muted mb-0">Dedicated support and long-term partnerships with clients</p>
+                    </div>
+                </div>
+
+                <div class="d-flex animate-slide-up" style="animation-delay: 0.35s;">
+                    <div class="flex-shrink-0">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb, #06b6d4); border-radius: 50%; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h5 class="fw-bold">Industry Leading</h5>
+                        <p class="text-muted mb-0">Recognized expertise in railway and industrial fabrication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 text-white">
+    <div class="container cta-content">
+        <div class="text-center">
+            <h2 class="display-4 fw-bold animate-slide-up mb-4">Ready to Start Your Project?</h2>
+            <p class="lead animate-slide-up mb-4">Get a custom quote from our expert team within 24 hours</p>
+            <div class="animate-bounce-in">
+                <a href="{% url 'request_quote' %}" class="btn btn-light btn-lg me-3" style="font-weight: 600; padding: 12px 30px;">
+                    <i class="fas fa-calculator me-2"></i>Get a Quote
+                </a>
+                <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg" style="font-weight: 600; padding: 12px 30px;">
+                    <i class="fas fa-phone me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5 section-bg-pattern">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold animate-slide-up">Client Testimonials</h2>
+            <p class="lead text-muted animate-slide-up">What our satisfied clients say about us</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card animate-slide-up">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Exceptional quality and precision. They delivered our door assemblies exactly as specified with zero defects."</p>
+                    <div class="testimonial-author">Rajesh Kumar</div>
+                    <div class="testimonial-company">Railway Authority</div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Reliable partner for our fabrication needs. Always meets deadlines and maintains highest quality standards."</p>
+                    <div class="testimonial-author">Priya Singh</div>
+                    <div class="testimonial-company">Automotive Industry</div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Outstanding technical expertise and customer service. They solved our complex fabrication challenges efficiently."</p>
+                    <div class="testimonial-author">Vikram Patel</div>
+                    <div class="testimonial-company">Engineering Corporation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Updates -->
+<section class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold animate-slide-up">Latest Updates</h2>
+            <p class="lead text-muted animate-slide-up">News and announcements from Srinivasa Enterprises</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 animate-slide-up">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h6 class="badge bg-primary">News</h6>
+                            <small class="text-muted">Jan 4, 2026</small>
+                        </div>
+                        <h5 class="card-title">New Advanced CNC Equipment</h5>
+                        <p class="card-text text-muted small">Added state-of-the-art CNC machines for enhanced precision and faster production.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h6 class="badge bg-success">Update</h6>
+                            <small class="text-muted">Dec 28, 2025</small>
+                        </div>
+                        <h5 class="card-title">ISO Certification Renewed</h5>
+                        <p class="card-text text-muted small">Successfully renewed our ISO 9001:2015 certification, ensuring quality excellence.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h6 class="badge bg-info">Expansion</h6>
+                            <small class="text-muted">Dec 15, 2025</small>
+                        </div>
+                        <h5 class="card-title">Production Capacity Increased</h5>
+                        <p class="card-text text-muted small">Expanded manufacturing capacity by 30% to meet growing client demands.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h5>Design & Engineering</h5>
+                    <p class="text-muted">Precision CAD design and engineering solutions</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0.1s;">
+                    <div class="process-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h5>Cutting & Forming</h5>
+                    <p class="text-muted">Advanced cutting and metal forming techniques</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0.2s;">
+                    <div class="process-icon">
+                        <i class="fas fa-welding"></i>
+                    </div>
+                    <h5>Welding & Assembly</h5>
+                    <p class="text-muted">Expert welding and precision assembly</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-step animate-bounce-in" style="animation-delay: 0.3s;">
+                    <div class="process-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5>Quality Control</h5>
+                    <p class="text-muted">Rigorous testing and quality assurance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Tools Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold animate-slide-up">Interactive Tools</h2>
+            <p class="lead animate-slide-up">Explore our advanced tools for material selection and process simulation</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 bg-white text-dark animate-slide-up floating-animation">
+                    <div class="card-body text-center">
+                        <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">AI Material Advisor</h5>
+                        <p class="card-text">Get expert recommendations for material selection based on your specific requirements and environment.</p>
+                        <a href="{% url 'material_advisor' %}" class="btn btn-primary">Try Advisor</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 bg-white text-dark animate-slide-up floating-animation" style="animation-delay: 0.2s;">
+                    <div class="card-body text-center">
+                        <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Process Simulator</h5>
+                        <p class="card-text">Simulate fabrication processes to understand time, cost, and quality implications.</p>
+                        <a href="#simulator" class="btn btn-primary">Try Simulator</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="py-5" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+    <div class="container text-center">
+        <h2 class="display-4 fw-bold mb-4 animate-slide-up">Ready to Start Your Project?</h2>
+        <p class="lead mb-4 animate-slide-up">Contact us today for a free consultation and quote</p>
+        <div class="animate-bounce-in">
+            <a href="{% url 'contact' %}" class="btn btn-light btn-lg me-3">Contact Us</a>
+            <a href="{% url 'request_quote' %}" class="btn btn-outline-light btn-lg">Request Quote</a>
+        </div>
+    </div>
+</section>
+
+  
+ <main class="container">
+  <section id="showcase" class="card">
+    <div class="section-title">
+      <h3>Interactive product showcase</h3>
+      <span class="pill mono">Replace with Three.js or &lt;model-viewer&gt;</span>
+    </div>
+    <p class="muted">Explore our key assemblies in 3D. Rotate, zoom, and inspect details. Swap the canvas with real GLB/OBJ models when ready.</p>
+
+    <div class="product-tabs" id="productTabs">
+      <div class="tab active" data-key="train-door-ac">A/C train door assembly</div>
+      <div class="tab" data-key="train-door-nonac">Non-A/C train door assembly</div>       
+      <div class="tab" data-key="cubical-door">Cubical door assembly</div>    
+      <div class="tab" data-key="lavatory-window">Lavatory window</div>  
+      <div class="tab" data-key="loader-arm">Loader arm assembly</div>
+    </div>
+
+    <div class="grid grid-2">
+      <div>
+        <canvas id="productCanvas"></canvas>
+      </div>
+      <div class="stack">
+        <div class="quote" id="productSpec">
+          <strong>Spec:</strong> Select a product tab to view details.
+        </div>
+        <div class="quote">
+          <strong>Note:</strong> Use proper lighting presets and exploded views for assemblies to showcase joints, fasteners, and seals.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const tabs = document.querySelectorAll("#productTabs .tab");
+  const canvas = document.getElementById("productCanvas");
+  const ctx = canvas.getContext("2d");
+  const productSpec = document.getElementById("productSpec");
+
+  canvas.width = 600;
+  canvas.height = 320;
+
+  const productInfo = {
+    "train-door-ac": "A/C Train Door Assembly – Stainless steel frame with tempered glass.",
+    "train-door-nonac": "Non-A/C Train Door Assembly – Lightweight aluminium panel.",
+    "cubical-door": "Cubical Door Assembly – Compact industrial hinge system.",
+    "lavatory-window": "Lavatory Window – Frosted tempered glass with gasket frame.",
+    "loader-arm": "Loader Arm Assembly – Heavy-duty machined steel arm."
+  };
+
+  const productImages = {
+    "train-door-ac": "/static/media/assets/showcase/train-door-ac.png",
+    "train-door-nonac": "/static/media/assets/showcase/train-door-nonac.png",
+    "cubical-door": "/static/media/assets/showcase/cubical-door.png",
+    "lavatory-window": "/static/media/assets/showcase/lavatory-window.png",
+    "loader-arm": "/static/media/assets/showcase/loader-arm.png"
+  };
+
+  // Preload images with error handling
+  const preloadedImages = {};
+  for (let key in productImages) {
+    const img = new Image();
+    img.src = productImages[key];
+    img.onload = () => console.log(key + " loaded successfully");
+    img.onerror = () => console.error("Failed to load " + productImages[key]);
+    preloadedImages[key] = img;
+  }
+
+  function loadProductImage(key) {
+    const img = preloadedImages[key];
+
+    if (!img || !img.complete) {
+      // fallback if image missing
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#333";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#fff";
+      ctx.font = "20px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("Image not available", canvas.width / 2, canvas.height / 2);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+      const x = (canvas.width - img.width * scale) / 2;
+      const y = (canvas.height - img.height * scale) / 2;
+      ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+    }
+
+    productSpec.innerHTML = `<strong>Spec:</strong> ${productInfo[key] || "No details available"}`;
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const key = tab.getAttribute("data-key");
+      loadProductImage(key);
+    });
+  });
+
+  // Load first tab on page load
+  loadProductImage("train-door-ac");
+</script>
+
+
+
+
+    <!-- Fabrication Process Simulator -->
+   <title>Fabrication Process Simulator</title>
+  <section id="simulator" class="card">
+    <div class="section-title">
+      <h3>Fabrication Process Simulator</h3>
+      <span class="pill">Cut • Bend • Weld • Polish • Assemble</span>
+    </div>
+    <p class="muted">Simulate a mini job. Choose material and operations to see cycle time, cost, and quality gates.</p>
+
+    <div class="sim-panel">
+      <div class="stack">
+        <label class="pill"><strong>Material:</strong>
+          <select id="simMaterial">
+            <option value="aluminium">Aluminium</option>
+            <option value="stainless">Stainless Steel</option>
+          </select>
+        </label>
+
+        <label class="pill"><strong>Thickness:</strong>
+          <input type="number" id="simThickness" min="1" max="20" value="4" /> mm
+        </label>
+
+        <label class="pill"><strong>Operations:</strong></label>
+        <div class="flex">
+          <label class="pill"><input type="checkbox" class="op" value="cut" checked /> cut</label>
+          <label class="pill"><input type="checkbox" class="op" value="bend" /> bend</label>
+          <label class="pill"><input type="checkbox" class="op" value="weld" /> weld</label>
+          <label class="pill"><input type="checkbox" class="op" value="polish" /> polish</label>
+          <label class="pill"><input type="checkbox" class="op" value="finish" /> finish</label>
+          <label class="pill"><input type="checkbox" class="op" value="assemble" checked /> assemble</label>
+        </div>
+
+        <button class="btn" id="runSim">Run Simulation</button>
+        <div id="simOutput" class="quote"></div>
+      </div>
+
+      <div>
+        <div class="fab-steps" id="fabSteps"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const opData = {
+  cut: { time: 2, cost: 280, quality: 1 },
+  bend: { time: 3, cost: 500, quality: 1 },
+  weld: { time: 5, cost: 1000, quality: 2 },
+  polish: { time: 2, cost: 1500, quality: 1 },
+  finish: { time: 1, cost: 200, quality: 1 },
+  assemble: { time: 4, cost: 400, quality: 2 }
+};
+const materialFactor = { aluminium:1, stainless:1.5 };
+
+document.getElementById("runSim").addEventListener("click", ()=>{
+  const material = document.getElementById("simMaterial").value;
+  const thickness = parseFloat(document.getElementById("simThickness").value);
+  const ops = Array.from(document.querySelectorAll(".op:checked")).map(op=>op.value);
+
+  let totalTime=0,totalCost=0,qualityScore=0;
+  const fabStepsDiv=document.getElementById("fabSteps");
+  fabStepsDiv.innerHTML="";
+
+  ops.forEach(op=>{
+    const stepTime = opData[op].time * thickness * materialFactor[material];
+    const stepCost = opData[op].cost * materialFactor[material];
+    totalTime += stepTime;
+    totalCost += stepCost;
+    qualityScore += opData[op].quality;
+
+    const step = document.createElement("div");
+    step.className = "quote";
+    step.innerText = `Step: ${op.toUpperCase()} → Time: ${stepTime.toFixed(1)} min, Cost: ${stepCost.toFixed(2)}`;
+    fabStepsDiv.appendChild(step);
+  });
+
+  document.getElementById("simOutput").innerHTML=
+    `<strong>Summary:</strong><br>
+     Total Cycle Time:${totalTime.toFixed(1)} min<br>
+     Total Cost: ₹${totalCost.toFixed(2)}<br>
+     Quality Score: ${qualityScore}`;
+});
+</script>
+
+</body>
+
+    <!-- Smart Configurator Tool -->
+    <section id="configurator" class="card">
+      <div class="section-title">
+        <h3>Smart configurator with live preview and instant quote</h3>
+        <span class="pill mono">Door/window dimensions • Finish • Material</span>
+      </div>
+      <p class="muted">Configure a door/window/panel and get an instant estimate. The preview updates in real time.</p>
+      <div class="grid grid-2">
+        <div>
+          <div id="preview" style="height:320px;background:linear-gradient(135deg,#0e141b, #0b1016);border:1px solid var(--border);border-radius:12px;position:relative;overflow:hidden"></div>
+          <div class="flex" style="margin-top:10px">
+            <span class="tag">Preview scaled to viewport</span>
+          </div>
+        </div>
+        <div class="stack">
+          <label class="pill"><strong>Product type:</strong>
+            <select id="cfgType">
+              <option value="door">Door assembly</option>
+              <option value="window">Lavatory window</option>
+              <option value="panel">Panel/cover</option>
+            </select>
+          </label>
+          <label class="pill"><strong>Material:</strong>
+            <select id="cfgMaterial">
+              <option value="aluminium">Aluminium</option>
+              <option value="stainless">Stainless Steel</option>
+            </select>
+          </label>
+          <label class="pill"><strong>Width:</strong>
+            <input type="range" id="cfgWidth" min="400" max="1200" value="800" class="range" />
+          </label>
+          <label class="pill"><strong>Height:</strong>
+            <input type="range" id="cfgHeight" min="400" max="2200" value="1900" class="range" />
+          </label>
+          <label class="pill"><strong>Finish:</strong>
+            <select id="cfgFinish">
+              <option value="brushed">Brushed</option>
+              <option value="mirror">Mirror</option>
+              <option value="bead">Bead-blast</option>
+              <option value="powder">Powder-coat</option>
+            </select>
+          </label>
+          <div class="quote" id="cfgQuote"></div>
+          <div class="flex">
+            <button class="btn" id="reqQuote">Request quote</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+<script>
+const preview = document.getElementById("preview");
+const cfgType = document.getElementById("cfgType");
+const cfgMaterial = document.getElementById("cfgMaterial");
+const cfgWidth = document.getElementById("cfgWidth");
+const cfgHeight = document.getElementById("cfgHeight");
+const cfgFinish = document.getElementById("cfgFinish");
+const cfgQuote = document.getElementById("cfgQuote");
+
+
+// --- MATERIAL COLORS / FINISHES ---
+const materialStyles = {
+  aluminium: {
+    brushed: "linear-gradient(135deg,#d9d9d9,#b8b8b8)",
+    mirror: "linear-gradient(135deg,#fdfdfd,#cfcfcf)",
+    bead: "linear-gradient(135deg,#c7c7c7,#9f9f9f)",
+    powder: "#d1d1d1"
+  },
+  stainless: {
+    brushed: "linear-gradient(135deg,#c8d0d8,#a0a7ae)",
+    mirror: "linear-gradient(135deg,#ffffff,#c6c6c6)",
+    bead: "linear-gradient(135deg,#aeb4ba,#7e848a)",
+    powder: "#bfc4c9"
+  }
+};
+
+// --- RENDER PREVIEW ---
+function renderPreview() {
+  preview.innerHTML = ""; // clear
+
+  const w = cfgWidth.value;
+  const h = cfgHeight.value;
+  const type = cfgType.value;
+  const material = cfgMaterial.value;
+  const finish = cfgFinish.value;
+
+  // scale to fit preview box
+  const maxW = 250;
+  const scale = maxW / w;
+
+  const elem = document.createElement("div");
+  elem.style.width = w * scale + "px";
+  elem.style.height = h * scale + "px";
+  elem.style.margin = "auto";
+  elem.style.position = "absolute";
+  elem.style.top = "0"; elem.style.left = "0"; elem.style.right = "0"; elem.style.bottom = "0";
+  elem.style.background = materialStyles[material][finish];
+  elem.style.border = "3px solid #111";
+  elem.style.borderRadius = type === "window" ? "6px" : "2px";
+  elem.style.boxShadow = "0 0 15px rgba(0,0,0,0.4)";
+
+  // for window → cutout rectangle
+  if (type === "window") {
+    const glass = document.createElement("div");
+    glass.style.position = "absolute";
+    glass.style.top = "10%";
+    glass.style.left = "10%";
+    glass.style.width = "80%";
+    glass.style.height = "80%";
+    glass.style.background = "rgba(200,220,255,0.45)";
+    glass.style.border = "2px solid rgba(255,255,255,0.5)";
+    glass.style.backdropFilter = "blur(4px)";
+    elem.appendChild(glass);
+  }
+
+  preview.appendChild(elem);
+}
+
+// --- PRICE CALC ---
+function calculateQuote() {
+  const area = (cfgWidth.value / 1000) * (cfgHeight.value / 1000); // sq meters
+
+  let base = 30000;
+  if (cfgType.value === "window") base += 150;
+  if (cfgType.value === "panel") base -= 50;
+
+  const materialFactor = cfgMaterial.value === "stainless" ? 1.6 : 1.2;
+  const finishFactor = cfgFinish.value === "mirror" ? 1.5 : 1.0;
+
+  const price = Math.round(area * base * materialFactor * finishFactor);
+
+  cfgQuote.innerHTML = `
+    <div class="tag" style="font-size:1.1rem">
+      Estimated Price: <strong>₹${price}</strong>
+    </div>
+  `;
+}
+
+// --- UPDATE ON CHANGE ---
+[cfgType, cfgMaterial, cfgWidth, cfgHeight, cfgFinish].forEach(el => {
+  el.addEventListener("input", () => {
+    renderPreview();
+    calculateQuote();
+  });
+});
+
+// initial load
+renderPreview();
+calculateQuote();
+</script>
+
+
+<style>
+  body {
+    background:#0b1016;
+    color:#eaeef3;
+    font-family:system-ui, sans-serif;
+    padding:20px;
+  }
+
+  .card {
+    background:#0e141b;
+    border:1px solid #1c2633;
+    border-radius:14px;
+    padding:20px;
+    max-width:900px;
+    margin:auto;
+  }
+
+  .section-title h3 {
+    margin:0 0 10px;
+  }
+
+  .muted {
+    color:#9aa4b2;
+    margin-bottom:16px;
+  }
+
+  .tour-360 {
+    height:200x;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid #1c2633;
+  }
+
+  .tour-360 img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Srinivas Enterprices -->
+<section id="tour" class="card">
+  <div class="section-title">
+    <h3>Srinivas Enterprices</h3>
+  </div>
+
+  <p class="muted">
+   We harness the latest technology, expert skills, and industry best practices to provide reliable, high-quality Aluminium and Stainless Steel fabrication – making us your trusted partner.
+  </p>
+
+  <div class="tour-360">
+    <!-- 👇 IMAGE SET USING IMG SRC -->
+    <img src="/static/media/assets/showcase/srinivasa.jpg" alt="Factory Image">
+  </div>
+</section>
+
+</body>
+
+
+
+   
+
+   
+
+    <!-- AI-Powered Material Advisor -->
+    <section id="advisor" class="card">
+  <div class="section-title">
+    <h3>AI-powered Material Advisor</h3>
+    <span class="pill mono">Expert rules now • Ready for model later</span>
+  </div>
+
+  <p class="muted">
+    Describe your use-case. Get a recommendation with reasoning and trade-offs to choose aluminium or stainless.
+  </p>
+
+  <div class="material-advisor">
+    <label class="pill"><strong>Environment:</strong>
+      <select id="env">
+        <option value="indoor">Indoor</option>
+        <option value="coastal">Coastal / Outdoor</option>
+        <option value="industrial">Industrial / Chemical</option>
+      </select>
+    </label>
+
+    <label class="pill"><strong>Weight sensitivity:</strong>
+      <select id="weight">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </label>
+
+    <label class="pill"><strong>Budget:</strong>
+      <select id="budget">
+        <option value="tight">Tight</option>
+        <option value="standard">Standard</option>
+        <option value="premium">Premium</option>
+      </select>
+    </label>
+
+    <label class="pill"><strong>Finish preference:</strong>
+      <select id="finishPref">
+        <option value="brushed">Brushed</option>
+        <option value="mirror">Mirror</option>
+        <option value="coated">Coated</option>
+      </select>
+    </label>
+
+    <button class="btn" id="advise">Get recommendation</button>
+
+    <div id="advisorOut" class="advisor-result"></div>
+  </div>
+</section>
+
+<script>
+document.getElementById("advise").addEventListener("click", () => {
+
+  const env = document.getElementById("env").value;
+  const weight = document.getElementById("weight").value;
+  const budget = document.getElementById("budget").value;
+  const finish = document.getElementById("finishPref").value;
+
+  let material = "";
+  let reasons = [];
+  let tradeoffs = [];
+
+  // Environment logic
+  if (env === "coastal" || env === "industrial") {
+    material = "Stainless Steel";
+    reasons.push("Excellent corrosion resistance in harsh environments");
+  } else {
+    material = "Aluminium";
+    reasons.push("Suitable for indoor applications");
+  }
+
+  // Weight logic
+  if (weight === "high") {
+    material = "Aluminium";
+    reasons.push("Lightweight and easy to handle");
+    tradeoffs.push("Lower impact strength compared to stainless steel");
+  }
+
+  // Budget logic
+  if (budget === "tight") {
+    material = "Aluminium";
+    reasons.push("More cost-effective option");
+  }
+
+  if (budget === "premium") {
+    reasons.push("Premium budget allows long-life material selection");
+  }
+
+  // Finish logic
+  if (finish === "mirror" && material === "Aluminium") {
+    tradeoffs.push("Mirror finish durability is lower than stainless steel");
+  }
+
+  if (finish === "mirror" && material === "Stainless Steel") {
+    reasons.push("Best material for mirror-polish finish");
+  }
+
+  // Output
+  document.getElementById("advisorOut").innerHTML = `
+    <h4>✅ Recommended material: <span class="good">${material}</span></h4>
+
+    <strong>Why this choice:</strong>
+    <ul>
+      ${reasons.map(r => `<li>${r}</li>`).join("")}
+    </ul>
+
+    ${tradeoffs.length ? `
+      <strong class="warn">Trade-offs to consider:</strong>
+      <ul>
+        ${tradeoffs.map(t => `<li>${t}</li>`).join("")}
+      </ul>
+    ` : ""}
+  `;
+});
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="grid grid-2">
+        <div>
+          <strong>SRINIVAS ENTERPRISES</strong><br/>
+          " Manufacture and Supply of Aluminum Fabrications, Stainless steel Fabrications, General Fabrications, Aluminum Door, Windows, Rail Coach Components, Under frame for Rail Bogie, Pressed Components, Machined Components for Railway, Automotive and Engineering Industries."
+        </div>
+        <!-- Include Font Awesome CDN in <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<div class="contact-info">
+  <strong>GET IN TOUCH</strong>
+  
+  <div class="muted">
+    <p><i class="fas fa-phone-alt"></i> +91 - 9884168468</p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:srinivasaenterprises103@gmail.com">srinivasaenterprises103@gmail.com</a></p>
+    <p><i class="fas fa-map-marker-alt"></i> Shed No.406, 17th Phase, Sidco Industrial Estate, Ambattur, Chennai-600 098.</p>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </footer>
+
+
+<script>
+document.getElementById("advise").addEventListener("click", () => {
+
+  const env = document.getElementById("env").value;
+  const weight = document.getElementById("weight").value;
+  const budget = document.getElementById("budget").value;
+  const finishPref = document.getElementById("finishPref").value;
+
+  let material = "";
+  let reason = "";
+  let tradeOff = "";
+
+  // ------- Environment Logic -------
+  if (env === "coastal" || env === "industrial") {
+    material = "Stainless Steel";
+    reason += "High corrosion resistance required. ";
+  } else {
+    material = "Aluminium";
+    reason += "Indoor/normal environment – corrosion risk low. ";
+  }
+
+  // ------- Weight Logic -------
+  if (weight === "high") {
+    material = "Aluminium";
+    reason += "Weight-sensitive application → Aluminium preferred. ";
+  }
+
+  // ------- Budget Logic -------
+  if (budget === "tight") {
+    material = "Aluminium";
+    reason += "Cost is important → Aluminium cheaper. ";
+  } else if (budget === "premium" && env !== "indoor") {
+    material = "Stainless Steel";
+    reason += "Premium budget allows SS for durability. ";
+  }
+
+  // ------- Finish Preference -------
+  if (finishPref === "mirror" && material === "aluminium") {
+    tradeOff += "Mirror finish on aluminium is possible but not true-mirror like SS. ";
+  }
+  if (finishPref === "coated") {
+    reason += "Coating requirement supports both materials. ";
+  }
+
+  // ------- Final trade-offs -------
+  if (material === "Aluminium") {
+    tradeOff += "Aluminium is light and economical but not as strong or corrosion-resistant as SS in harsh environments.";
+  } else {
+    tradeOff += "Stainless Steel is stronger and more durable but heavier and more expensive.";
+  }
+
+  // Output      <p><strong>Why this choice:</strong><br>${reason}</p>
+  <div>    
+      <p> <strong>Trade-offs:</strong>${tradeOff}</p>
+      <p class="muted">This rule-based advisor will be replaced with an ML model later.</p>
+  </div>
+  
+});
+</script>

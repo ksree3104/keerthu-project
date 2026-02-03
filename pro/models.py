@@ -6,7 +6,8 @@ class Product(models.Model):
     description = models.TextField()
     material = models.CharField(max_length=50, choices=[
         ('aluminium', 'Aluminium'),
-        ('stainless', 'Stainless Steel')
+        ('stainless', 'Stainless Steel'),
+        ('aluminium & stainless', 'Aluminium & Stainless Steel')
     ])
     category = models.CharField(max_length=50, choices=[
         ('door', 'Door Assembly'),

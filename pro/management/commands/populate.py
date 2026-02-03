@@ -5,51 +5,8 @@ class Command(BaseCommand):
     help = 'Populate database with sample data'
 
     def handle(self, *args, **options):
-        # Create sample products
-        products_data = [
-            {
-                'name': 'A/C Train Door Assembly',
-                'description': 'Stainless steel frame with tempered glass for air-conditioned train compartments',
-                'material': 'stainless',
-                'category': 'door',
-                'base_price': 25000.00
-            },
-            {
-                'name': 'Non-A/C Train Door Assembly',
-                'description': 'Lightweight aluminium panel door assembly for non-air-conditioned trains',
-                'material': 'aluminium',
-                'category': 'door',
-                'base_price': 18000.00
-            },
-            {
-                'name': 'Cubical Door Assembly',
-                'description': 'Compact industrial hinge system for cubical enclosures',
-                'material': 'aluminium',
-                'category': 'cubical_door',
-                'base_price': 15000.00
-            },
-            {
-                'name': 'Lavatory Window',
-                'description': 'Frosted tempered glass with gasket frame for train lavatories',
-                'material': 'aluminium',
-                'category': 'window',
-                'base_price': 12000.00
-            },
-            {
-                'name': 'Loader Arm Assembly',
-                'description': 'Heavy-duty machined steel arm for loading operations',
-                'material': 'stainless',
-                'category': 'loader_arm',
-                'base_price': 35000.00
-            }
-        ]
-
-        for product_data in products_data:
-            Product.objects.get_or_create(
-                name=product_data['name'],
-                defaults=product_data
-            )
-
+        # Product population removed - users should add products manually via admin panel
+        
         # Create sample clients
         clients_data = [
             {

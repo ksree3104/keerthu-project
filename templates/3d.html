@@ -161,7 +161,7 @@
         left: -5%;
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(172, 48, 48, 0.08) 0%, transparent 70%);
         border-radius: 50%;
     }
 
@@ -224,10 +224,10 @@
 <!-- Hero Section -->
 <section class="hero-section animate-fade-in" style="padding: 100px 0;">
     <div class="container">
-        <div class="row align-items-center justify-content-center">
+        <div class="row align-items-center justify-content-left">
             <!-- Center Content -->
             <div class="col-lg-8">
-                <div class="hero-content text-center">
+                <div class="hero-content text-left">
                     <h1 class="hero-title animate-slide-up">Precision Fabrication Excellence</h1>
                     <p class="hero-subtitle animate-slide-up">Industry-Leading Aluminium & Stainless Steel Solutions for Railway and Industrial Applications</p>
                 </div>
@@ -242,7 +242,7 @@
         <div class="row text-center">
             <div class="col-md-3 mb-4">
                 <div class="stat-card animate-slide-up">
-                    <div class="stat-number">15+</div>
+                    <div class="stat-number">36+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
             </div>
@@ -281,7 +281,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card product-card h-100 animate-slide-up {% if forloop.counter0|divisibleby:3 %}product-delay-0{% elif forloop.counter0|add:1|divisibleby:3 %}product-delay-1{% else %}product-delay-2{% endif %}">
                     {% if product.image %}
-                        <img src="{% static 'media/aliminium fabrication.jpg'%}" class="card-img-top" alt="{{ product.name }}" style="height: 220px; object-fit: cover;">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 220px; object-fit: cover;">
                     {% else %}
                         <div class="product-image">
                             <i class="fas fa-cube fa-3x text-muted"></i>
@@ -304,8 +304,11 @@
             </div>
             {% empty %}
             <div class="col-12 text-center">
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i>Products will be displayed here once added to the system.
+                <div class="alert alert-success" style="background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 2px dashed #10b981; color: #065f46; padding: 40px; border-radius: 12px;">
+                    <i class="fas fa-rocket me-2" style="font-size: 2rem;"></i>
+                    <h4 style="margin-top: 15px; font-weight: 600;">Ready to Start Your Project!</h4>
+                    <p style="margin-top: 10px; font-size: 1.05rem;">Add your products from the admin panel to showcase them here.</p>
+                    <p style="font-size: 0.95rem; color: #047857; margin-top: 10px;"><strong>Tip:</strong> Go to <code style="background: rgba(255,255,255,0.5); padding: 2px 6px; border-radius: 3px;">/admin/</code> to add products</p>
                 </div>
             </div>
             {% endfor %}
@@ -354,8 +357,9 @@
 </section>
 
 <!-- Why Choose Us -->
-<section class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
-    <div class="container">
+<section class="py-5" style="background: url('/static/media/assets/showcase/choosing2.jpg') center center / cover no-repeat; position: relative;">
+    
+    <div class="container" style="position: relative; z-index: 1;">
         <div class="text-center mb-5">
             <h2 class="display-4 fw-bold animate-slide-up">Why Choose Srinivasa Enterprises?</h2>
             <p class="lead text-muted animate-slide-up">Trusted partner for precision fabrication solutions</p>
@@ -439,23 +443,6 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="cta-section py-5 text-white">
-    <div class="container cta-content">
-        <div class="text-center">
-            <h2 class="display-4 fw-bold animate-slide-up mb-4">Ready to Start Your Project?</h2>
-            <p class="lead animate-slide-up mb-4">Get a custom quote from our expert team within 24 hours</p>
-            <div class="animate-bounce-in">
-                <a href="{% url 'request_quote' %}" class="btn btn-light btn-lg me-3" style="font-weight: 600; padding: 12px 30px;">
-                    <i class="fas fa-calculator me-2"></i>Get a Quote
-                </a>
-                <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg" style="font-weight: 600; padding: 12px 30px;">
-                    <i class="fas fa-phone me-2"></i>Contact Us
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Testimonials Section -->
 <section class="py-5 section-bg-pattern">

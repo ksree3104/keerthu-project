@@ -4,33 +4,140 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section animate-fade-in" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(6, 182, 212, 0.8)), url('/static/media/assets/showcase/material advisor.jfif'); background-size: cover; background-position: center; background-attachment: fixed;">
+<section class="hero-section animate-fade-in" style="background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%); padding: 80px 0; position: relative; overflow: hidden;">
     <div class="container">
-        <div class="hero-content text-center text-white">
-            <h1 class="hero-title animate-slide-up">Material Advisor</h1>
-            <p class="hero-subtitle animate-slide-up">Expert guidance on material selection for your fabrication needs</p>
+        <div class="hero-content text-center text-white" style="position: relative; z-index: 2;">
+            <h1 class="hero-title animate-slide-up" style="font-size: 3.5rem; font-weight: 700; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">Material Advisor</h1>
+            <p class="hero-subtitle animate-slide-up" style="font-size: 1.3rem; color: rgba(255,255,255,0.95);">Expert guidance on material selection for your fabrication needs</p>
         </div>
     </div>
 </section>
 
-<!-- Material Advisor Content -->
-<section class="py-5 section-bg-pattern">
+<!-- AI Interactive Analyzer Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: white;">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-4 fw-bold animate-slide-up">Choose the Right Material</h2>
-            <p class="lead text-muted animate-slide-up">Get expert advice on selecting the perfect material for your project</p>
+            <div style="display: inline-block; background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; animation: pulse 2s infinite;">
+                <i class="fas fa-microchip me-2"></i><span style="font-weight: 600;">AI-POWERED ANALYZER</span>
+            </div>
+            <h2 class="display-4 fw-bold animate-slide-up" style="margin-bottom: 15px;">Get Your Custom Recommendation</h2>
+            <p class="lead animate-slide-up" style="color: rgba(255,255,255,0.9);">Tell us about your project and our AI will analyze your requirements to recommend the perfect material</p>
         </div>
 
         <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-0 shadow-lg p-5" style="background: rgba(255,255,255,0.95);">
+                    <form id="materialAnalyzerForm">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-600" style="color: #1f2937;">
+                                    <i class="fas fa-weight me-2" style="color: #667eea;"></i>Primary Requirement
+                                </label>
+                                <select class="form-select form-select-lg" id="primaryReq" required style="border-color: #e5e7eb;">
+                                    <option value="">Select...</option>
+                                    <option value="weight">Lightweight Construction</option>
+                                    <option value="strength">High Strength & Durability</option>
+                                    <option value="corrosion">Corrosion Resistance</option>
+                                    <option value="cost">Cost Effectiveness</option>
+                                    <option value="temperature">High Temperature</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-600" style="color: #1f2937;">
+                                    <i class="fas fa-dollar-sign me-2" style="color: #667eea;"></i>Budget Priority
+                                </label>
+                                <select class="form-select form-select-lg" id="budgetPriority" required style="border-color: #e5e7eb;">
+                                    <option value="">Select budget...</option>
+                                    <option value="high">Budget is Critical</option>
+                                    <option value="medium">Balanced Approach</option>
+                                    <option value="low">Premium Quality Priority</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-600" style="color: #1f2937;">
+                                    <i class="fas fa-environment me-2" style="color: #667eea;"></i>Operating Environment
+                                </label>
+                                <select class="form-select form-select-lg" id="environment" required style="border-color: #e5e7eb;">
+                                    <option value="">Select environment...</option>
+                                    <option value="indoor">Indoor/Controlled</option>
+                                    <option value="outdoor">Outdoor/Weather</option>
+                                    <option value="marine">Marine/Harsh</option>
+                                    <option value="extreme">Extreme Temperature</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-600" style="color: #1f2937;">
+                                    <i class="fas fa-toolbox me-2" style="color: #667eea;"></i>Application Type
+                                </label>
+                                <select class="form-select form-select-lg" id="applicationType" required style="border-color: #e5e7eb;">
+                                    <option value="">Select application...</option>
+                                    <option value="train">Railway Components</option>
+                                    <option value="structural">Structural Elements</option>
+                                    <option value="panels">Panels & Enclosures</option>
+                                    <option value="fasteners">Fasteners & Hardware</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-center pt-3">
+                            <button type="submit" class="btn btn-lg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 50px; border: none; border-radius: 8px; font-weight: 700;">
+                                <i class="fas fa-brain me-2"></i>Analyze & Get Recommendation
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Analysis Results Section -->
+<section id="analysisResults" class="py-5" style="display: none; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold animate-slide-up">Your AI Analysis Results</h2>
+            <p class="lead text-muted animate-slide-up">Based on your project requirements</p>
+        </div>
+
+        <div id="recommendationResults" class="row g-4">
+            <!-- Results will be inserted here -->
+        </div>
+    </div>
+</section>
+
+<!-- AI-Powered Recommendation Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; border-radius: 50px; margin-bottom: 20px;">
+                <i class="fas fa-brain me-2"></i><span style="font-weight: 600;">AI Recommendation Engine</span>
+            </div>
+            <h2 class="display-4 fw-bold animate-slide-up" style="margin-bottom: 15px;">Intelligent Material Selection</h2>
+            <p class="lead text-muted animate-slide-up">Our AI-powered advisor analyzes your project requirements and recommends the optimal material solution</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- AI Recommendation Card 1 -->
             <div class="col-lg-6 mb-4">
-                <div class="card h-100 border-0 shadow-lg animate-bounce-in">
+                <div class="card h-100 border-0 shadow-lg animate-bounce-in" style="border-left: 5px solid #667eea; background: white; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 15px; border-radius: 0 0 0 15px; font-size: 12px; font-weight: 600;">
+                        <i class="fas fa-star me-1"></i>AI RECOMMENDED
+                    </div>
                     <div class="card-header bg-primary text-white text-center py-4">
                         <h4 class="mb-0"><i class="fas fa-tools me-2"></i>Aluminium</h4>
+                        <small style="opacity: 0.9;">Ideal for 65% of railway applications</small>
                     </div>
                     <div class="card-body">
+                        <div style="background: #f0f4ff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #667eea;">
+                            <p style="margin: 0; color: #667eea; font-weight: 600;"><i class="fas fa-lightbulb me-2"></i>AI Insight:</p>
+                            <p style="margin: 10px 0 0 0; color: #333; font-size: 0.95rem;">Perfect for lightweight applications requiring cost-effectiveness and ease of fabrication. Recommended when weight reduction and budget are primary considerations.</p>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>Advantages</h5>
+                                <h5><i class="fas fa-check-circle text-success me-2"></i>Key Advantages</h5>
                                 <ul class="list-unstyled">
                                     <li><i class="fas fa-check text-success me-2"></i>Lightweight (1/3 of steel)</li>
                                     <li><i class="fas fa-check text-success me-2"></i>Excellent corrosion resistance</li>
@@ -39,7 +146,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h5>Best For</h5>
+                                <h5><i class="fas fa-bullseye text-warning me-2"></i>Ideal For</h5>
                                 <ul class="list-unstyled">
                                     <li><i class="fas fa-star text-warning me-2"></i>Train doors and windows</li>
                                     <li><i class="fas fa-star text-warning me-2"></i>Lightweight panels</li>
@@ -48,24 +155,35 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="mt-3">
-                            <span class="badge bg-primary me-2">Railway Applications</span>
-                            <span class="badge bg-info me-2">Lightweight</span>
-                            <span class="badge bg-success">Cost Effective</span>
+                        <div class="mt-4">
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 8px 12px;">Railway Applications</span>
+                                <span class="badge bg-info" style="padding: 8px 12px;">Lightweight</span>
+                                <span class="badge bg-success" style="padding: 8px 12px;">Cost Effective</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- AI Recommendation Card 2 -->
             <div class="col-lg-6 mb-4">
-                <div class="card h-100 border-0 shadow-lg animate-bounce-in" style="animation-delay: 0.2s;">
+                <div class="card h-100 border-0 shadow-lg animate-bounce-in" style="border-left: 5px solid #10b981; background: white; position: relative; overflow: hidden; animation-delay: 0.2s;">
+                    <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 8px 15px; border-radius: 0 0 0 15px; font-size: 12px; font-weight: 600;">
+                        <i class="fas fa-crown me-1"></i>PREMIUM CHOICE
+                    </div>
                     <div class="card-header bg-success text-white text-center py-4">
                         <h4 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Stainless Steel</h4>
+                        <small style="opacity: 0.9;">Best for 35% of high-demand applications</small>
                     </div>
                     <div class="card-body">
+                        <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #10b981;">
+                            <p style="margin: 0; color: #059669; font-weight: 600;"><i class="fas fa-sparkles me-2"></i>AI Insight:</p>
+                            <p style="margin: 10px 0 0 0; color: #333; font-size: 0.95rem;">Superior choice for demanding applications requiring maximum durability and premium quality. Recommended when long-term performance and reliability are critical.</p>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>Advantages</h5>
+                                <h5><i class="fas fa-check-circle text-success me-2"></i>Key Advantages</h5>
                                 <ul class="list-unstyled">
                                     <li><i class="fas fa-check text-success me-2"></i>Superior strength and durability</li>
                                     <li><i class="fas fa-check text-success me-2"></i>Excellent corrosion resistance</li>
@@ -74,7 +192,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h5>Best For</h5>
+                                <h5><i class="fas fa-bullseye text-warning me-2"></i>Ideal For</h5>
                                 <ul class="list-unstyled">
                                     <li><i class="fas fa-star text-warning me-2"></i>High-strength applications</li>
                                     <li><i class="fas fa-star text-warning me-2"></i>Corrosive environments</li>
@@ -83,10 +201,12 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="mt-3">
-                            <span class="badge bg-success me-2">High Strength</span>
-                            <span class="badge bg-warning me-2">Corrosion Resistant</span>
-                            <span class="badge bg-danger">Premium Quality</span>
+                        <div class="mt-4">
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <span class="badge" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 8px 12px;">High Strength</span>
+                                <span class="badge bg-warning" style="padding: 8px 12px;">Corrosion Resistant</span>
+                                <span class="badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 8px 12px;">Premium Quality</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,53 +215,7 @@
     </div>
 </section>
 
-<!-- Material Selection Guide -->
-<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-4 fw-bold animate-slide-up">Material Selection Guide</h2>
-            <p class="lead animate-slide-up">Choose the right material based on your project requirements</p>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card bg-white text-dark border-0 shadow-lg animate-slide-up">
-                    <div class="card-body text-center p-4">
-                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                            <i class="fas fa-weight-hanging fa-2x text-primary"></i>
-                        </div>
-                        <h5>Weight Considerations</h5>
-                        <p>Aluminium is ideal for applications where weight reduction is critical. Stainless steel provides superior strength-to-weight ratio for demanding applications.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="card bg-white text-dark border-0 shadow-lg animate-slide-up" style="animation-delay: 0.1s;">
-                    <div class="card-body text-center p-4">
-                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                            <i class="fas fa-shield-alt fa-2x text-success"></i>
-                        </div>
-                        <h5>Corrosion Resistance</h5>
-                        <p>Both materials offer excellent corrosion resistance, but stainless steel provides superior protection in harsh environments and marine applications.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="card bg-white text-dark border-0 shadow-lg animate-slide-up" style="animation-delay: 0.2s;">
-                    <div class="card-body text-center p-4">
-                        <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                            <i class="fas fa-dollar-sign fa-2x text-info"></i>
-                        </div>
-                        <h5>Cost Analysis</h5>
-                        <p>Aluminium typically offers better value for most applications. Stainless steel is recommended when premium quality and long-term durability are priorities.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Application Matrix -->
 <section class="py-5 section-bg-pattern">
@@ -219,4 +293,258 @@
         </div>
     </div>
 </section>
+
+<script>
+document.getElementById('materialAnalyzerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const primaryReq = document.getElementById('primaryReq').value;
+    const budgetPriority = document.getElementById('budgetPriority').value;
+    const environment = document.getElementById('environment').value;
+    const applicationType = document.getElementById('applicationType').value;
+    
+    // AI Scoring System
+    let aluminiumScore = 50;
+    let stainlessScore = 50;
+    
+    // Analyze primary requirement
+    switch(primaryReq) {
+        case 'weight':
+            aluminiumScore += 30;
+            stainlessScore += 10;
+            break;
+        case 'strength':
+            stainlessScore += 30;
+            aluminiumScore += 5;
+            break;
+        case 'corrosion':
+            stainlessScore += 25;
+            aluminiumScore += 20;
+            break;
+        case 'cost':
+            aluminiumScore += 25;
+            stainlessScore += 5;
+            break;
+        case 'temperature':
+            stainlessScore += 30;
+            aluminiumScore += 5;
+            break;
+    }
+    
+    // Analyze budget priority
+    switch(budgetPriority) {
+        case 'high':
+            aluminiumScore += 25;
+            stainlessScore -= 10;
+            break;
+        case 'medium':
+            aluminiumScore += 10;
+            stainlessScore += 10;
+            break;
+        case 'low':
+            stainlessScore += 25;
+            aluminiumScore -= 10;
+            break;
+    }
+    
+    // Analyze environment
+    switch(environment) {
+        case 'indoor':
+            aluminiumScore += 5;
+            stainlessScore += 5;
+            break;
+        case 'outdoor':
+            aluminiumScore += 10;
+            stainlessScore += 15;
+            break;
+        case 'marine':
+            stainlessScore += 30;
+            aluminiumScore -= 5;
+            break;
+        case 'extreme':
+            stainlessScore += 30;
+            aluminiumScore -= 10;
+            break;
+    }
+    
+    // Analyze application type
+    switch(applicationType) {
+        case 'train':
+            aluminiumScore += 20;
+            stainlessScore += 10;
+            break;
+        case 'structural':
+            stainlessScore += 25;
+            aluminiumScore += 5;
+            break;
+        case 'panels':
+            aluminiumScore += 15;
+            stainlessScore += 10;
+            break;
+        case 'fasteners':
+            stainlessScore += 20;
+            aluminiumScore += 5;
+            break;
+    }
+    
+    // Normalize scores to 0-100
+    const maxScore = Math.max(aluminiumScore, stainlessScore);
+    aluminiumScore = Math.round((aluminiumScore / maxScore) * 100);
+    stainlessScore = Math.round((stainlessScore / maxScore) * 100);
+    
+    // Determine winner
+    const winner = aluminiumScore > stainlessScore ? 'aluminium' : 'stainless';
+    
+    // Generate analysis summary
+    const summaryMap = {
+        'weight-high': 'Lightweight design with budget constraints - Aluminium is ideal',
+        'weight-medium': 'Balanced lightweight solution - Aluminium recommended',
+        'strength-high': 'Maximum durability with budget flexibility - Stainless Steel wins',
+        'strength-medium': 'Strength balanced with cost - Stainless Steel recommended',
+        'corrosion-high': 'Harsh environment protection - Stainless Steel essential',
+        'corrosion-medium': 'Good corrosion resistance needed - Stainless Steel optimal',
+        'cost-high': 'Cost optimization critical - Aluminium perfect',
+        'cost-medium': 'Cost-conscious choice - Aluminium recommended',
+        'temperature-high': 'Extreme heat environment - Stainless Steel required',
+        'temperature-medium': 'Moderate heat protection - Stainless Steel better'
+    };
+    
+    const summaryKey = `${primaryReq}-${budgetPriority}`;
+    const summary = summaryMap[summaryKey] || 'AI analysis complete - See detailed recommendations below';
+    
+    // Generate HTML results
+    const resultsHTML = `
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-lg animate-bounce-in" style="border-left: 5px solid ${winner === 'aluminium' ? '#667eea' : '#10b981'}; position: relative;">
+                <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, ${winner === 'aluminium' ? '#667eea 0%, #764ba2' : '#10b981 0%, #059669'} 100%); color: white; padding: 10px 18px; border-radius: 0 0 0 15px; font-size: 11px; font-weight: 700;">
+                    <i class="fas fa-trophy me-1"></i>TOP CHOICE
+                </div>
+                <div class="card-header ${winner === 'aluminium' ? 'bg-primary' : 'bg-success'} text-white text-center py-4">
+                    <h4 class="mb-0"><i class="fas fa-${winner === 'aluminium' ? 'tools' : 'shield-alt'} me-2"></i>${winner === 'aluminium' ? 'Aluminium' : 'Stainless Steel'}</h4>
+                    <small style="opacity: 0.9;">AI Confidence Score: <strong>${winner === 'aluminium' ? aluminiumScore : stainlessScore}%</strong></small>
+                </div>
+                <div class="card-body">
+                    <div style="background: ${winner === 'aluminium' ? '#f0f4ff' : '#ecfdf5'}; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid ${winner === 'aluminium' ? '#667eea' : '#10b981'};">
+                        <p style="margin: 0; color: ${winner === 'aluminium' ? '#667eea' : '#059669'}; font-weight: 700;"><i class="fas fa-chart-line me-2"></i>AI Analysis:</p>
+                        <p style="margin: 10px 0 0 0; color: #333; font-size: 0.95rem;">${summary}</p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.02); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small style="font-weight: 600;">Match Score</small>
+                            <small style="font-weight: 700; color: ${winner === 'aluminium' ? '#667eea' : '#10b981'};">${winner === 'aluminium' ? aluminiumScore : stainlessScore}%</small>
+                        </div>
+                        <div class="progress" style="height: 8px; border-radius: 4px; background: #e5e7eb;">
+                            <div class="progress-bar" role="progressbar" style="width: ${winner === 'aluminium' ? aluminiumScore : stainlessScore}%; background: linear-gradient(90deg, ${winner === 'aluminium' ? '#667eea 0%, #764ba2' : '#10b981 0%, #059669'} 100%);" aria-valuenow="${winner === 'aluminium' ? aluminiumScore : stainlessScore}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <h6 style="color: #1f2937; margin-top: 15px; margin-bottom: 10px;"><i class="fas fa-check-circle text-success me-2"></i>Why This Material?</h6>
+                    <ul class="list-unstyled" style="font-size: 0.95rem;">
+                        ${winner === 'aluminium' ? `
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-success me-2"></i>Optimal for your weight requirement</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-success me-2"></i>Best value for budget constraints</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-success me-2"></i>Perfect for ${applicationType === 'train' ? 'railway applications' : 'your application'}</li>
+                        ` : `
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-success me-2"></i>Superior strength and durability</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-success me-2"></i>Excellent for ${environment === 'marine' ? 'harsh marine environments' : 'extreme conditions'}</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-success me-2"></i>Premium quality assurance</li>
+                        `}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-lg animate-bounce-in" style="border-left: 5px solid ${winner === 'stainless' ? '#667eea' : '#10b981'}; animation-delay: 0.2s; position: relative;">
+                <div style="position: absolute; top: 0; right: 0; background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%); color: white; padding: 10px 18px; border-radius: 0 0 0 15px; font-size: 11px; font-weight: 700;">
+                    <i class="fas fa-star me-1"></i>ALTERNATIVE
+                </div>
+                <div class="card-header bg-secondary text-white text-center py-4">
+                    <h4 class="mb-0"><i class="fas fa-${winner === 'stainless' ? 'shield-alt' : 'tools'} me-2"></i>${winner === 'stainless' ? 'Aluminium' : 'Stainless Steel'}</h4>
+                    <small style="opacity: 0.9;">AI Confidence Score: <strong>${winner === 'stainless' ? aluminiumScore : stainlessScore}%</strong></small>
+                </div>
+                <div class="card-body">
+                    <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #9ca3af;">
+                        <p style="margin: 0; color: #6b7280; font-weight: 700;"><i class="fas fa-info-circle me-2"></i>Alternative Option:</p>
+                        <p style="margin: 10px 0 0 0; color: #333; font-size: 0.95rem;">This material could be a secondary option if specific project constraints change.</p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.02); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small style="font-weight: 600;">Match Score</small>
+                            <small style="font-weight: 700; color: #6b7280;">${winner === 'stainless' ? aluminiumScore : stainlessScore}%</small>
+                        </div>
+                        <div class="progress" style="height: 8px; border-radius: 4px; background: #e5e7eb;">
+                            <div class="progress-bar" role="progressbar" style="width: ${winner === 'stainless' ? aluminiumScore : stainlessScore}%; background: #9ca3af;" aria-valuenow="${winner === 'stainless' ? aluminiumScore : stainlessScore}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <h6 style="color: #1f2937; margin-top: 15px; margin-bottom: 10px;"><i class="fas fa-lightbulb text-warning me-2"></i>When to Consider?</h6>
+                    <ul class="list-unstyled" style="font-size: 0.95rem;">
+                        ${winner === 'stainless' ? `
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-secondary me-2"></i>If budget constraints increase</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-secondary me-2"></i>For lightweight-critical projects</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-secondary me-2"></i>When cost optimization is needed</li>
+                        ` : `
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-secondary me-2"></i>If durability becomes critical</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-secondary me-2"></i>For premium quality requirements</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check text-secondary me-2"></i>In extreme environmental conditions</li>
+                        `}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mt-4">
+            <div class="card border-0 shadow-lg p-4" style="background: linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%);">
+                <h5 style="color: #1f2937; margin-bottom: 15px;"><i class="fas fa-cogs me-2" style="color: #667eea;"></i>Detailed AI Analysis</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                            <small style="color: #667eea; font-weight: 700;">PRIMARY REQUIREMENT</small>
+                            <p style="margin: 8px 0 0 0; color: #1f2937;"><strong>${primaryReq.charAt(0).toUpperCase() + primaryReq.slice(1)}</strong> selected</p>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                            <small style="color: #667eea; font-weight: 700;">ENVIRONMENT</small>
+                            <p style="margin: 8px 0 0 0; color: #1f2937;"><strong>${environment.charAt(0).toUpperCase() + environment.slice(1)}</strong> conditions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                            <small style="color: #667eea; font-weight: 700;">BUDGET PRIORITY</small>
+                            <p style="margin: 8px 0 0 0; color: #1f2937;"><strong>${budgetPriority.charAt(0).toUpperCase() + budgetPriority.slice(1)}</strong> importance</p>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                            <small style="color: #667eea; font-weight: 700;">APPLICATION TYPE</small>
+                            <p style="margin: 8px 0 0 0; color: #1f2937;"><strong>${applicationType.charAt(0).toUpperCase() + applicationType.slice(1).replace('-', ' ')}</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #e5e7eb;">
+                    <p style="color: #475569; margin: 0; font-size: 0.95rem;"><i class="fas fa-check-circle text-success me-2"></i><strong>Next Step:</strong> Contact our experts to discuss technical specifications, pricing, and delivery timelines for your selected material.</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Display results
+    document.getElementById('recommendationResults').innerHTML = resultsHTML;
+    document.getElementById('analysisResults').style.display = 'block';
+    
+    // Scroll to results
+    setTimeout(() => {
+        document.getElementById('analysisResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+});
+
+// Add pulse animation to AI badge
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+    }
+    .pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+`;
+document.head.appendChild(style);
+</script>
+
 {% endblock %}

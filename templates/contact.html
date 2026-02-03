@@ -6,10 +6,7 @@
 <style>
 .hero-section {
     padding: 100px 0;
-    background: url('/static/media/assets/showcase/contact.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -116,17 +113,17 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section" style="background: url('/static/media/assets/showcase/mail.jpg') center center / cover no-repeat; height: 400px; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 40px; overflow: hidden;">
     <div class="container">
-        <div class="hero-content text-center" style="position: relative; z-index: 1;">
-            <h1 class="hero-title">Get in Touch</h1>
+        <div class="text-center mb-5" style="position: relative; z-index: 2;">
+            <h2 class="display-4 fw-bold">Get in Touch</h2>
             <p class="hero-subtitle"><i class="fas fa-envelope me-2"></i>We'd love to hear from you</p>
         </div>
     </div>
 </section>
 
 <!-- Contact Form & Info -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9);">
+<section class="py-5" style="background: #f9fafb;">
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-8">

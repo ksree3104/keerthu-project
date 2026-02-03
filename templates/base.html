@@ -12,6 +12,7 @@
         body {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             background-attachment: fixed;
+            padding-top: 60px;
         }
 
         .navbar {
@@ -21,13 +22,15 @@
         }   
 
         .hero-section {
-            background:  url('/static/media/assets/showcase/presseision.jpg');
+            background:  url('/static/media/assets/showcase/home page.png') no-repeat center center fixed;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
             position: relative;
             overflow: hidden;
+            margin-top: -60px;
+            padding-top: 60px;
         }
 
         .hero-section::before {
@@ -137,6 +140,10 @@
         @keyframes floating {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
+        }
+
+        .section-bg-pattern {
+            background-image: none !important;
         }
     </style>
 </head>

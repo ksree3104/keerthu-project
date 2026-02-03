@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Placed Successfully - Srinivasa Enterprises{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <!-- Truck Animation with Triple Colors -->
+                <div class="truck-check-container" style="margin: 40px 0; position: relative; height: 200px; display: flex; align-items: center; justify-content: center; overflow: visible;">
+                    <div class="truck-moving">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <h1 class="mb-3 success-title" style="color: #28a745; font-weight: 700; font-size: 2.5rem;">Order Placed Successfully! 🎉</h1>
+                <p class="lead mb-4 success-subtitle" style="color: #666; font-size: 1.2rem;">
+                    <strong>Your quote request is on the way!</strong><br>
+                    Your request has been submitted successfully. We'll review your requirements and get back to you soon.
+                </p>
+
+                <!-- Quote Details -->
+                <div class="card mb-4" style="border-left: 4px solid #28a745;">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3" style="color: #28a745; font-weight: 600;">✓ Quote Details</h5>
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <p style="color: #666; margin-bottom: 5px;"><strong>Quote Reference ID:</strong></p>
+                                <p id="quote-id" style="color: #007bff; font-weight: 700; font-size: 1.3rem;">#{{ quote_id }}</p>
+                            </div>
+                            <div class="col-md-6 text-start">
+                                <p style="color: #666; margin-bottom: 5px;"><strong>Customer Name:</strong></p>
+                                <p style="font-weight: 600; font-size: 1.1rem;">{{ client_name }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <p style="color: #666; margin-bottom: 5px;"><strong>Email Address:</strong></p>
+                                <p style="color: #007bff;">{{ client_email }}</p>
+                            </div>
+                            <div class="col-md-6 text-start">
+                                <p style="color: #666; margin-bottom: 5px;"><strong>Request Status:</strong></p>
+                                <p><span class="badge bg-success">✓ Successfully Submitted</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="alert alert-info mb-4" role="alert" style="box-shadow: 0 2px 8px rgba(23, 162, 184, 0.2);">
+                    <h5 class="alert-heading">📋 What Happens Next?</h5>
+                    <ul class="mb-0 text-start">
+                        <li>✓ Your quote request is being processed</li>
+                        <li>✓ Our team will review your specifications within <strong>24 hours</strong></li>
+                        <li>✓ We'll send a detailed quote to <strong>{{ client_email }}</strong></li>
+                        <li>✓ Reference your Quote ID <strong>#{{ quote_id }}</strong> for tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                    <a href="{% url 'request_quote' %}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-plus-circle"></i> Request Another Quote
+                    </a>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-box mt-5 p-4" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 12px; border: 1px solid #dee2e6;">
+                    <h6 class="mb-3" style="color: #333; font-weight: 600;">📞 Need Help? Contact Us</h6>
+                    <p style="margin-bottom: 10px;">
+                        <i class="fas fa-phone" style="color: #28a745; margin-right: 8px;"></i> 
+                        <strong>Call Us:</strong> <a href="tel:+919884168468" style="color: #007bff; text-decoration: none;">+91 9884168468</a>
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        <i class="fas fa-envelope" style="color: #28a745; margin-right: 8px;"></i> 
+                        <strong>Email:</strong> <a href="mailto:srinivasaenterprises103@gmail.com" style="color: #007bff; text-decoration: none;">srinivasaenterprises103@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Truck and Check Mark Animation Container */
+    .truck-check-container {
+        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(40, 167, 69, 0.15);
+    }
+
+    /* Truck Moving Animation with Triple Colors */
+    .truck-moving {
+        font-size: 100px;
+        animation: truckSlide 3s ease-in-out infinite;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(90deg, #FF6B35, #004E89, #1A9B8E);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 8px #FF6B35) drop-shadow(0 0 4px #004E89) drop-shadow(0 0 6px #1A9B8E);
+    }
+
+    @keyframes truckSlide {
+        0% {
+            transform: translateX(-80px);
+            opacity: 0;
+        }
+        15% {
+            opacity: 1;
+        }
+        50% {
+            transform: translateX(0);
+        }
+        85% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(80px);
+            opacity: 0;
+        }
+    }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 20px rgba(40, 167, 69, 0);
+        }
+    }
+
+    .success-title {
+        animation: slideInUp 0.8s ease-out 0.3s both;
+    }
+
+    .success-subtitle {
+        animation: slideInUp 0.8s ease-out 0.5s both;
+    }
+
+    .card {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.8s ease-out 0.6s both;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    .btn {
+        border-radius: 6px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.8s ease-out 0.8s both;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+    }
+
+    .btn-outline-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+    }
+
+    .alert {
+        border-radius: 8px;
+        border: none;
+        animation: slideInUp 0.8s ease-out 0.7s both;
+        box-shadow: 0 2px 8px rgba(23, 162, 184, 0.2);
+    }
+
+    .badge {
+        padding: 8px 12px;
+        font-size: 0.95rem;
+        animation: pulse 2s infinite;
+    }
+
+    .d-flex {
+        animation: slideInUp 0.8s ease-out 0.9s both;
+    }
+
+    .contact-info-box {
+        animation: slideInUp 0.8s ease-out 1s both;
+    }
+
+    /* Pulse effect on quote ID */
+    #quote-id {
+        animation: pulse 2s infinite;
+        display: inline-block;
+        padding: 5px 10px;
+        background: #e3f2fd;
+        border-radius: 4px;
+    }
+
+    /* Success confetti effect simulation */
+    .success-particle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #ffc107;
+        border-radius: 50%;
+        animation: confettifall 3s linear infinite;
+    }
+
+    @keyframes confettifall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+{% endblock %}

@@ -4,11 +4,11 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section animate-fade-in" style="background: url('/static/media/assets/showcase/about img.jfif'); background-size: cover; background-position: center; background-attachment: fixed;">
+<section class="hero-section animate-fade-in" style="background: url('/static/media/assets/showcase/about img.jfif') center center / cover no-repeat; height: 400px; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 40px; overflow: hidden;">
     <div class="container">
-        <div class="hero-content text-center text-white">
-            <h1 class="hero-title animate-slide-up">About Srinivasa Enterprises</h1>
-            <p class="hero-subtitle animate-slide-up">15+ Years of Excellence in Metal Fabrication</p>
+        <div class="hero-content text-center text-white" style="position: relative; z-index: 2;">
+            <h1 class="hero-title animate-slide-up" style="font-size: 3.5rem; font-weight: 700; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">About Srinivasa Enterprises</h1>
+            <p class="hero-subtitle animate-slide-up" style="font-size: 1.3rem; color: rgba(255,255,255,0.95);">15+ Years of Excellence in Metal Fabrication</p>
         </div>
     </div>
 </section>
@@ -47,7 +47,7 @@
 </section>
 
 <!-- Mission & Vision -->
-<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+<section class="py-5" style="background: url('/static/media/assets/showcase/mission and vission.jpg'); color: white;">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mb-4">
@@ -127,38 +127,38 @@
 </section>
 
 <!-- Why Choose Us -->
-<section class="py-5" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+<section class="py-5" style="background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/static/media/assets/showcase/choosing.jpg') center/cover no-repeat; color: white;">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-4 fw-bold animate-slide-up">Why Choose Us</h2>
-            <p class="lead animate-slide-up">What sets Srinivasa Enterprises apart</p>
+            <h2 class="display-4 fw-bold animate-slide-up" style="font-weight: 800;">Why Choose Us</h2>
+            <p class="lead animate-slide-up" style="font-size: 1.2rem; color: rgba(255,255,255,0.9);">Industry-Leading Excellence in Metal Fabrication</p>
         </div>
         <div class="row">
             <div class="col-lg-4 mb-4">
                 <div class="text-center animate-slide-up">
-                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                        <i class="fas fa-crosshairs fa-2x text-white"></i>
+                    <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 90px; height: 90px; backdrop-filter: blur(10px);">
+                        <i class="fas fa-microchip fa-2x text-white"></i>
                     </div>
-                    <h5>Precision Engineering</h5>
-                    <p>Tolerance accuracy of ±0.2mm ensures perfect fit and function</p>
+                    <h5 class="fw-bold mb-3" style="font-size: 1.1rem;">Precision & Accuracy</h5>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">Maintain ±0.2mm tolerance specifications with advanced CNC technology and stringent quality control standards</p>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="text-center animate-slide-up" style="animation-delay: 0.1s;">
-                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                        <i class="fas fa-clock fa-2x text-white"></i>
+                    <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 90px; height: 90px; backdrop-filter: blur(10px);">
+                        <i class="fas fa-tachometer-alt fa-2x text-white"></i>
                     </div>
-                    <h5>Quick Turnaround</h5>
-                    <p>7-21 days lead time with efficient project management</p>
+                    <h5 class="fw-bold mb-3" style="font-size: 1.1rem;">Fast Delivery</h5>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">Optimized production schedules deliver projects in 7-21 days without compromising on quality or craftsmanship</p>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="text-center animate-slide-up" style="animation-delay: 0.2s;">
-                    <div class="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                        <i class="fas fa-shield-alt fa-2x text-white"></i>
+                    <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 90px; height: 90px; backdrop-filter: blur(10px);">
+                        <i class="fas fa-certificate fa-2x text-white"></i>
                     </div>
-                    <h5>Quality Assurance</h5>
-                    <p>Rigorous testing and inspection at every stage</p>
+                    <h5 class="fw-bold mb-3" style="font-size: 1.1rem;">Certified Excellence</h5>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">Comprehensive testing and inspection protocols ensure industry compliance and consistent quality across all deliverables</p>
                 </div>
             </div>
         </div>

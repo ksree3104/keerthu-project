@@ -4,11 +4,11 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section" style="background: url('/static/media/assets/showcase/quote.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+<section class="hero-section" style="background: url('/static/media/assets/showcase/request quote.jpg') center center / cover no-repeat; height: 400px; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 40px; overflow: hidden;">
     <div class="container">
-        <div class="hero-content text-center">
-            <h1 class="hero-title">Request a Quote</h1>
-            <p class="hero-subtitle">Get instant pricing for your fabrication needs</p>
+        <div class="hero-content text-center" style="position: relative; z-index: 2;">
+            <h1 class="hero-title" style="font-size: 3.5rem; font-weight: 700; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">Request a Quote</h1>
+            <p class="hero-subtitle" style="font-size: 1.3rem; color: rgba(255,255,255,0.95);">Get instant pricing for your fabrication needs</p>
         </div>
     </div>
 </section>
@@ -32,16 +32,55 @@
                         {% csrf_token %}
 
                         <!-- Client Information -->
-                        <h4 class="mb-3">Client Information</h4>
+                        <h4 class="mb-3">Customer Information</h4>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="{{ form.client.id_for_label }}" class="form-label">Select Existing Client</label>
-                                {{ form.client }}
-                                <small class="text-muted">Or fill in details below if new client</small>
+                                <label for="{{ form.client_name.id_for_label }}" class="form-label">Full Name *</label>
+                                {{ form.client_name }}
+                                {% if form.client_name.errors %}
+                                    <div class="text-danger small">{{ form.client_name.errors.0 }}</div>
+                                {% endif %}
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">New Client? Fill details below</label>
-                                <p class="text-muted small mb-0">Leave client selection empty and fill the form</p>
+                                <label for="{{ form.client_company.id_for_label }}" class="form-label">Company Name *</label>
+                                {{ form.client_company }}
+                                {% if form.client_company.errors %}
+                                    <div class="text-danger small">{{ form.client_company.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.client_email.id_for_label }}" class="form-label">Email Address *</label>
+                                {{ form.client_email }}
+                                {% if form.client_email.errors %}
+                                    <div class="text-danger small">{{ form.client_email.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.client_phone.id_for_label }}" class="form-label">Phone Number *</label>
+                                {{ form.client_phone }}
+                                {% if form.client_phone.errors %}
+                                    <div class="text-danger small">{{ form.client_phone.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.client_address.id_for_label }}" class="form-label">Address</label>
+                                {{ form.client_address }}
+                                {% if form.client_address.errors %}
+                                    <div class="text-danger small">{{ form.client_address.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.client_industry.id_for_label }}" class="form-label">Industry Type</label>
+                                {{ form.client_industry }}
+                                {% if form.client_industry.errors %}
+                                    <div class="text-danger small">{{ form.client_industry.errors.0 }}</div>
+                                {% endif %}
                             </div>
                         </div>
 

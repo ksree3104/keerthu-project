@@ -3,11 +3,12 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Client, QuoteRequest, FabricationProcess, MaterialAdvisor
 from .forms import QuoteRequestForm, ClientForm
+from .email_utils import send_quote_confirmation_email, send_contact_confirmation_email
 
 def home(request):
-    all_products = Product.objects.all()
-    featured_product = all_products.first()  # Get first product as featured
-    products = all_products[:5]  # Show latest 5 products
+    all_products = Product.objects.all().order_by('-created_at')
+    featured_product = all_products.first() if all_products.exists() else None
+    products = all_products
     return render(request, "3d.html", {'products': products, 'featured_product': featured_product})
 
 def about(request):
@@ -29,6 +30,8 @@ def contact(request):
         form = ClientForm(request.POST)
         if form.is_valid():
             client = form.save()
+            # Send confirmation email to client
+            send_contact_confirmation_email(client.email, client.name)
             messages.success(request, f'Thank you {client.name}! We will contact you soon.')
             return redirect('contact')
     else:
@@ -39,9 +42,67 @@ def request_quote(request):
     if request.method == 'POST':
         form = QuoteRequestForm(request.POST)
         if form.is_valid():
-            quote = form.save()
-            messages.success(request, 'Quote request submitted successfully! We will contact you within 24 hours.')
-            return redirect('home')
+            try:
+                # Get client information from form
+                client_id = form.cleaned_data.get('client')
+                
+                if client_id:
+                    # Use existing client
+                    client = Client.objects.get(id=client_id)
+                else:
+                    # Create new client from form data
+                    client_name = form.cleaned_data.get('client_name')
+                    client_email = form.cleaned_data.get('client_email')
+                    client_phone = form.cleaned_data.get('client_phone')
+                    client_company = form.cleaned_data.get('client_company')
+                    client_address = form.cleaned_data.get('client_address', '')
+                    client_industry = form.cleaned_data.get('client_industry', 'other')
+                    
+                    # Check if client with same email exists
+                    existing_client = Client.objects.filter(email=client_email).first()
+                    if existing_client:
+                        client = existing_client
+                    else:
+                        # Create new client
+                        client = Client.objects.create(
+                            name=client_name,
+                            email=client_email,
+                            phone=client_phone,
+                            company=client_company,
+                            address=client_address,
+                            industry=client_industry
+                        )
+                
+                # Create the quote request with the client
+                quote = form.save(commit=False)
+                quote.client = client
+                quote.save()
+                
+                # Send confirmation email to client (non-blocking)
+                try:
+                    send_quote_confirmation_email(
+                        client_email=client.email,
+                        client_name=client.name,
+                        product_name=quote.product.name,
+                        quote_id=quote.id
+                    )
+                except Exception as e:
+                    # Log email error but don't fail the quote submission
+                    print(f"Email sending error: {e}")
+                
+                # Redirect to success page with quote details
+                return render(request, 'order_success.html', {
+                    'quote_id': quote.id,
+                    'client_email': client.email,
+                    'client_name': client.name
+                })
+            except Exception as e:
+                # Handle any unexpected errors
+                messages.error(request, f'An error occurred while processing your request: {str(e)}')
+                return render(request, "request_quote.html", {'form': form, 'products': Product.objects.all()})
+        else:
+            # Form is not valid, display errors
+            return render(request, "request_quote.html", {'form': form, 'products': Product.objects.all()})
     else:
         form = QuoteRequestForm()
     products = Product.objects.all()

@@ -4,114 +4,76 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section" style="background: url('/static/media/assets/showcase/clients.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+<section class="hero-section" style="background: url('/static/media/assets/showcase/clients.jpg') center center / cover no-repeat; height: 400px; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 40px; overflow: hidden;">
     <div class="container">
-        <div class="hero-content text-center">
-            <h1 class="hero-title">Our Valued Clients</h1>
-            <p class="hero-subtitle">Trusted partners across railway, automotive, and engineering industries</p>
+        <div class="hero-content text-center" style="position: relative; z-index: 2;">
+            <h1 class="hero-title" style="font-size: 3.5rem; font-weight: 700; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">Our Valued Clients</h1>
+            <p class="hero-subtitle" style="font-size: 1.3rem; color: rgba(255,255,255,0.95); text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Trusted partners across railway, automotive, and engineering industries</p>
         </div>
     </div>
 </section>
 
-<!-- Clients Table -->
+<!-- Clients Gallery -->
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-4 fw-bold">Client Portfolio</h2>
-            <p class="lead text-muted">Organizations that trust us with their fabrication needs</p>
+            <h2 class="display-4 fw-bold">Our Clients</h2>
+            <p class="lead text-muted">Trusted by leading organizations across multiple industries</p>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">Our Clients</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Company</th>
-                                <th>Industry</th>
-                                <th>Contact</th>
-                                <th>Since</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for client in clients %}
-                            <tr>
-                                <td>{{ client.name }}</td>
-                                <td>{{ client.company|default:"-" }}</td>
-                                <td>
-                                    <span class="badge bg-primary">{{ client.get_industry_display }}</span>
-                                </td>
-                                <td>
-                                    <a href="mailto:{{ client.email }}" class="text-decoration-none">
-                                        <i class="fas fa-envelope me-1"></i>{{ client.email }}
-                                    </a><br>
-                                    <small class="text-muted">
-                                        <i class="fas fa-phone me-1"></i>{{ client.phone }}
-                                    </small>
-                                </td>
-                                <td>{{ client.created_at|date:"M Y" }}</td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="5" class="text-center text-muted py-4">
-                                    No clients added yet. Clients will appear here once they register or are added to the system.
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-4 fw-bold">What Our Clients Say</h2>
-            <p class="lead text-muted">Testimonials from satisfied customers</p>
-        </div>
         <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Srinivasa Enterprises delivered our train door assemblies with exceptional precision.
-                        Their quality control and timely delivery helped us meet our project deadlines."
-                    </p>
-                    <p class="testimonial-author">
-                        <strong>Rajesh Kumar</strong><br>
-                        <small class="text-muted">Indian Railways</small>
-                    </p>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="client-logo-card text-center p-4">
+                    <div class="client-logo-wrapper" style="background: #f8f9fa; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 120px; overflow: hidden;">
+                        <img src="/static/media/assets/showcase/client1.jpg" alt="Indian Railways" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <h6 class="mt-3 mb-0">Indian Railways</h6>
+                    <small class="text-muted">Railway Division</small>
                 </div>
             </div>
-            <div class="col-lg-4 mb-4">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Outstanding fabrication work on our metro rail components. The team's expertise
-                        in aluminium and stainless steel is commendable."
-                    </p>
-                    <p class="testimonial-author">
-                        <strong>Priya Sharma</strong><br>
-                        <small class="text-muted">Metro Rail Corporation</small>
-                    </p>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="client-logo-card text-center p-4">
+                    <div class="client-logo-wrapper" style="background: #f8f9fa; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 120px; overflow: hidden;">
+                        <img src="/static/media/assets/showcase/client2.jpg" alt="Metro Rail Corporation" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <h6 class="mt-3 mb-0">Metro Rail Corporation</h6>
+                    <small class="text-muted">Metro Systems</small>
                 </div>
             </div>
-            <div class="col-lg-4 mb-4">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Reliable partner for our engineering projects. Consistent quality and professional
-                        service make them our go-to fabrication experts."
-                    </p>
-                    <p class="testimonial-author">
-                        <strong>Amit Patel</strong><br>
-                        <small class="text-muted">Automotive Solutions Ltd</small>
-                    </p>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="client-logo-card text-center p-4">
+                    <div class="client-logo-wrapper" style="background: #f8f9fa; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 120px; overflow: hidden;">
+                        <img src="/static/media/assets/showcase/client3.jpg" alt="Automotive Solutions" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <h6 class="mt-3 mb-0">Automotive Solutions</h6>
+                    <small class="text-muted">Automotive Industry</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="client-logo-card text-center p-4">
+                    <div class="client-logo-wrapper" style="background: #f8f9fa; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 120px; overflow: hidden;">
+                        <img src="/static/media/assets/showcase/client4.jpg" alt="Engineering Enterprises" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <h6 class="mt-3 mb-0">Engineering Enterprises</h6>
+                    <small class="text-muted">Engineering Sector</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="client-logo-card text-center p-4">
+                    <div class="client-logo-wrapper" style="background: #f8f9fa; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 120px; overflow: hidden;">
+                        <img src="/static/media/assets/showcase/client5.jpg" alt="Manufacturing Ltd" style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <h6 class="mt-3 mb-0">Manufacturing Ltd</h6>
+                    <small class="text-muted">Industrial Manufacturing</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="client-logo-card text-center p-4">
+                    <div class="client-logo-wrapper" style="background: #f8f9fa; border-radius: 8px; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 120px; overflow: hidden;">
+                        <img src="/static/media/assets/showcase/construction co.jpg" alt="Construction Co." style="max-height: 100px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <h6 class="mt-3 mb-0">Construction Co.</h6>
+                    <small class="text-muted">Construction Sector</small>
                 </div>
             </div>
         </div>
@@ -119,7 +81,7 @@
 </section>
 
 <!-- Industries Served -->
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="display-4 fw-bold">Industries We Serve</h2>

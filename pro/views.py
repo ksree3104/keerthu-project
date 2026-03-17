@@ -38,6 +38,14 @@ def contact(request):
         form = ClientForm()
     return render(request, "contact.html", {'form': form})
 
+
+def contact_new(request):
+    """Render a standalone contact page (duplicate of contact.html) used for alternate layout or testing.
+    This version simply serves the pre‑styled template without form context; form handling remains
+    on the original `/contact/` view.
+    """
+    return render(request, "contact_new.html")
+
 def request_quote(request):
     if request.method == 'POST':
         form = QuoteRequestForm(request.POST)

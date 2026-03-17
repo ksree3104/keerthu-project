@@ -24,6 +24,7 @@ urlpatterns = [
     path('credentials/', views.credentials, name='credentials'),
     path('clients/', views.clients, name='clients'),
     path('contact/', views.contact, name='contact'),
+    path('contact-new/', views.contact_new, name='contact_new'),
     path('request-quote/', views.request_quote, name='request_quote'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
     path('material-advisor/', views.material_advisor, name='material_advisor'),

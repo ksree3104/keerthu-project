@@ -9,6 +9,9 @@
             <div class="col-lg-8 text-center">
                 <!-- Truck Animation with Triple Colors -->
                 <div class="truck-check-container" style="margin: 40px 0; position: relative; height: 200px; display: flex; align-items: center; justify-content: center; overflow: visible;">
+                    <!-- Road with markings -->
+                    <div class="road-base"></div>
+                    <div class="road-marking"></div>
                     <div class="truck-moving">
                         <i class="fas fa-truck"></i>
                     </div>
@@ -90,25 +93,108 @@
 <style>
     /* Truck and Check Mark Animation Container */
     .truck-check-container {
-        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        background: linear-gradient(135deg, #e8ebe8, #f6fff6);
         border-radius: 16px;
         padding: 30px;
         margin-bottom: 30px;
         box-shadow: 0 4px 20px rgba(40, 167, 69, 0.15);
     }
 
-    /* Truck Moving Animation with Triple Colors */
+    /* Road base */
+    .road-base {
+        position: absolute;
+        bottom: 15%;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background: linear-gradient(180deg, #555 0%, #666 50%, #555 100%);
+        border-top: 2px solid #444;
+        border-bottom: 2px solid #333;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.3);
+        z-index: 0;
+    }
+
+    /* Road center line marking */
+    .road-marking {
+        position: absolute;
+        bottom: 36%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 8px;
+        background-size: 60px 100%;
+        background-image: repeating-linear-gradient(
+            90deg,
+            #FFD700 0px,
+            #FFD700 35px,
+            transparent 35px,
+            transparent 60px
+        );
+        background-repeat: repeat-x;
+        background-position: 0 0;
+        z-index: 1;
+        animation: roadLineFlow 2s linear infinite;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    @keyframes roadLineFlow {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 60px 0;
+        }
+    }
+
+    /* Truck Moving Animation with Green Color */
     .truck-moving {
         font-size: 100px;
         animation: truckSlide 3s ease-in-out infinite;
         display: inline-block;
         position: relative;
-        z-index: 1;
-        background: linear-gradient(90deg, #FF6B35, #004E89, #1A9B8E);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        filter: drop-shadow(0 0 8px #FF6B35) drop-shadow(0 0 4px #004E89) drop-shadow(0 0 6px #1A9B8E);
+        z-index: 2;
+        color: #28a745;
+        filter: drop-shadow(0 0 10px rgba(40, 167, 69, 0.6));
+    }
+
+    /* Smoke trail effect behind truck */
+    .truck-moving::before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 200px;
+        height: 60px;
+        background: radial-gradient(ellipse at left, rgba(100, 100, 100, 0.9), rgba(120, 120, 120, 0.6), transparent);
+        border-radius: 50%;
+        filter: blur(20px);
+        animation: smokeTrail 3s ease-in-out infinite;
+    }
+
+    @keyframes smokeTrail {
+        0% {
+            opacity: 0;
+            width: 50px;
+            right: 100%;
+        }
+        15% {
+            opacity: 1;
+            width: 150px;
+        }
+        50% {
+            opacity: 0.8;
+            width: 200px;
+        }
+        85% {
+            opacity: 0.4;
+            width: 250px;
+        }
+        100% {
+            opacity: 0;
+            width: 300px;
+            right: 100%;
+        }
     }
 
     @keyframes truckSlide {
